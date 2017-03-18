@@ -11,7 +11,7 @@ describe("About Higher Order Functions", function() {
     var numbers = [1,2,3];
     var odd     = _(numbers).filter(function(x) { return x % 2 !== 0 });
     
-    expect(odd).toEqual([1,3]);
+    expect(odd).toEqual([1,3, 2]);
     expect(odd.length).toBe(2);
     expect(numbers.length).toBe(3);
   });
