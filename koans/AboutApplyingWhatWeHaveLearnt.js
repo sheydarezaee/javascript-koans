@@ -85,25 +85,35 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should count the ingredient occurrence (functional)", function () {
     var ingredientCount = { "{ingredient name}": 0 };
-
-    function getIngredients (aProduct) {
-      return aProduct.ingredient;
-    }
+    /* chain() together map(), flatten() and reduce() */
+ 
+    var getIngredients = function(aProduct) {
+      return aProduct.ingredients;
+    };
 
     var countOccurances = function(start,item) {
       ingredientCount[start] = (ingredientCount[start] || 0) + 1;
+      
+      //Or:  if(ingredientCount[start]) {
+      //   ingredientCount[start] += 1;
+      // }
+      // else {
+      //   ingredientCount[start] = 1;
+      // }
+      
       return item;
     };
-
-    /* chain() together map(), flatten() and reduce() */
-
+        
     _(products).chain()
                .map(getIngredients)
                .flatten()
-               .reduce(countOccurances);
+               .reduce(countOccurances)
+
+
 
     expect(ingredientCount['mushrooms']).toBe(2);
   });
+
 
   /*********************************************************************************/
   /* UNCOMMENT FOR EXTRA CREDIT */
